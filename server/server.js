@@ -1,5 +1,5 @@
 const path = require('path');
-const PORT = process.eventNames.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 var app = require('express')();
 var http = require('http').Server(app);

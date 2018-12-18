@@ -48,9 +48,11 @@ io.use((packet, next) => {
     // console.log('packet', packet.id)
 
     const token = packet.handshake.query.token;
+    // console.log('connect token', o)
     if (!token) return next(new Error('no token'));
 
     jwt.verify(token, 'secret', (err, decoded) => {
+        if (err) console.log('token invalid', err)
         if (err) return next(new Error('invalid token'))
 
         // console.log('decoded', decoded)
@@ -86,6 +88,10 @@ io.on('connection', socket => {
         next();
     })
 
+
+    socket.on('maintainConnection', data => {
+        console.log('maintaining connection', socket.id)
+    })
 
     socket.on('message', (message, fn) => {
         handleMessage(message, socket);

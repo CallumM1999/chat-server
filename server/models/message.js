@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const message = mongoose.model('message', { 
+const message = mongoose.model('message', {
     message: {
         type: String,
         required: true

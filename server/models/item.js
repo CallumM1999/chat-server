@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const item = mongoose.model('queue', { 
+const item = mongoose.model('queue', {
     message: {
         type: String,
         required: true

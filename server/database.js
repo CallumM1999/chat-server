@@ -1,6 +1,6 @@
 // const mongoose = require('mongoose');
 
-const Message = require('./models/message')
+const Message = require('./models/message');
 
 
 const addMessage = (message, user) => {
@@ -12,12 +12,12 @@ const addMessage = (message, user) => {
         newMessage.save((err, res) => {
             if (err) reject(new Error(err));
 
-            resolve(res)
+            resolve(res);
         });
-    })
-}
+    });
+};
 
 
 module.exports = {
     addMessage
-}
+};

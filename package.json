@@ -19,5 +19,9 @@
   },
   "scripts": {
     "start": "node server/server.js"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.15.3"
   }
 }

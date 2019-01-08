@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const item = mongoose.model('queue', {
-    message: {
+const queueItem = mongoose.model('queue', {
+    messageID: {
         type: String,
         required: true
     },
@@ -9,7 +9,6 @@ const item = mongoose.model('queue', {
         type: String,
         required: true
     }
-
 });
 
-module.exports = item;
+module.exports = queueItem;

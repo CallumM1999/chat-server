@@ -1,37 +1,20 @@
-// const mongoose = require('mongoose');
+const addToQueue = require('./mongo/methods/addToQueue');
+const getQueue = require('./mongo/methods/getQueue');
+const clearQueue = require('./mongo/methods/clearQueue');
 
-const Message = require("./models/message");
-const Item = require("./models/item");
+const add = (message, recipient) => new Promise((resolve, reject) => {
+	addToQueue(message, recipient)
+		.then(res => resolve(res))
+		.catch(err => reject(new Error(err)));
+});
 
-const add = (message, recipient) =>
-    new Promise((resolve, reject) => {
-        const newItem = new Item({ message, recipient });
-
-        newItem.save((err, res) => {
-            if (err) reject(new Error(err));
-            resolve(res);
-        });
-    });
-
-const get = recipient =>
-    new Promise((resolve, reject) => {
-        Item.find({ recipient }, (err, res) => {
-            if (err) reject(new Error(err));
-
-            const ids = res.map(item => item.message);
-
-            Message.find({ _id: { $in: ids } }, (err, messages) => {
-                if (err) reject(new Error(err));
-
-                Item.remove({ message: { $in: ids } }, (err, res) => {
-                    if (err) reject(new Error(err));
-                    resolve(messages);
-                });
-            });
-        });
-    });
+const get = (recipient) => new Promise(async (resolve, reject) => {
+	const { messages, ids } = await getQueue(recipient);
+	await clearQueue(ids);
+	resolve(messages);
+});
 
 module.exports = {
-    add,
-    get
-};
+	add,
+	get
+}; 

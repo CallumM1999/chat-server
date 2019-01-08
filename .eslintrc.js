@@ -1,27 +1,34 @@
 module.exports = {
-    env: {
-        es6: true,
-        node: true
+    "env": {
+        "node": true,
+        "es6": true
     },
-    extends: ["eslint:recommended", "prettier"],
-    parserOptions: {
-        ecmaVersion: 2018
-    },
-    rules: {
-        indent: ["error", 4],
-        "linebreak-style": ["error", "unix"],
-        quotes: ["error", "single"],
-        semi: ["error", "always"],
-        "no-console": "off",
+    "parser": "babel-eslint",
 
-        "prettier/prettier": [
+    extends: ["eslint:recommended"],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "indent": [
             "error",
-            {
-                trailingComma: "es5",
-                singleQuote: true,
-                printWidth: 120
-            }
-        ]
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error", "always"
+        ],
+        "no-console": "off",
     }
-
 };

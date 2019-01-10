@@ -1,0 +1,180 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+section.register {
+
+
+
+    width: 100vw;
+    min-height: 100vh;
+
+ 
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+#registerForm {
+    /* padding: 10px; */
+    border-radius: 3px;
+
+    width: 600px;
+    max-width: 100%;
+
+    background-color: hsl(260, 50%, 95%);
+    overflow: hidden;
+ 
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+    color: hsl(260, 50%, 89%);
+    letter-spacing: 3px;
+    font-weight: 100;
+    margin: 20px 0;
+}
+
+.formHeading {
+    background-color: orange;
+    background-color: hsl(260, 50%, 50%);
+
+
+    width: 100%;
+    border: 1px solid transparent;
+
+    padding: 10px;
+
+    margin-bottom: 50px;
+}
+
+.formGroup {
+    /* background-color: hsl(260, 50%, 75%); */
+    /* background-color: hsl(260, 60%, 60%); */
+    position: relative;
+
+    /* height: 50px; */
+
+    margin-top: 30px;
+    padding: 10px;
+
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    height: 50px;
+
+    border: 2px solid hsl(120, 50%, 70%);
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 20px;
+
+    color: #444;
+    /* color: hsl(260, 50%, 50%); */
+
+
+}
+
+
+
+label {
+    transition: all .1s linear;
+
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 20px
+
+}
+
+input:invalid {
+    border: 2px solid hsl(0, 60%, 40%); 
+    box-shadow: none;
+    
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    transition: all .1s linear;
+    font-size: 16px;
+    top: -15px;
+}
+.submitBtn {
+    width: 600px;
+    max-width: 100%;
+
+    height: 60px;
+
+    border-radius: 5px;
+
+    background-color: hsl(260, 30%, 60%);
+
+    border: none;
+
+    border-bottom: 8px solid hsl(260, 80%, 30%);
+
+    margin-top: 20px;
+
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+#bgVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: -2;
+
+    object-fit: cover;
+
+
+    width: 100vw;
+    height: 100;
+
+}
+.videoOverlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: hsla(260, 50%, 50%, .2)
+
+}
+
+hr {
+    margin-top:20px;
+margin-bottom:20px;
+border:0;
+border-top:1px solid #34495e;
+
+
+
+width:80%;
+margin:5px auto;
+border-color: hsl(260, 50%, 89%);
+
+border-color: white
+}

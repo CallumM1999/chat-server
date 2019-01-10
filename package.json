@@ -15,6 +15,7 @@
         "mongodb": "^3.1.10",
         "mongoose": "^5.3.16",
         "socket.io": "^2.2.0",
+        "validator": "^10.10.0",
         "websocket": "^1.0.28"
     },
     "engines": {

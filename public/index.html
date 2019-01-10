@@ -1,1 +1,80 @@
-<h1>Welcome to server</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="js/register.js"></script>
+
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+    <video autoplay loop id='bgVideo'>
+        <source src="/assets/video/city.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="videoOverlay"></div>
+
+    <section class="register">
+        <form id='registerForm'>
+            <div class="formHeading">
+                <h1>Register</h1>
+
+
+                <hr>
+                <hr>
+
+            </div>
+
+            <div class="formGroup">
+                <input type="text" id="input_email" name='email' required>
+                <label for="input_email">Email</label>
+            </div>
+
+            <div class="formGroup">
+                <input type="text" id="input_email_conf" name='email_conf' required>
+                <label for="input_email_conf">Confirm Email</label>
+            </div>
+
+            <div class="formGroup">
+                <input type="text" id="input_fname" name='fname' required>
+                <label for="input_fname">First Name</label>
+            </div>
+
+            <div class="formGroup">
+                <input type="text" id="input_lname" name='lname' required>
+                <label for="input_lname">Surname</label>
+            </div>
+
+            <div class="formGroup">
+                <input type="password" id="input_password" name='password' required>
+                <label for="input_password">Password</label>
+            </div>
+
+            <div class="formGroup">
+                <input type="password" id="input_password_conf" name='password_conf' required>
+                <label for="input_password_conf">Confirm Password</label>
+            </div>
+
+            <div class="formGroup">
+                <input type="submit" value="submit" class="submitBtn">
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <script>
+        const registerForm = document.querySelector('#registerForm');
+        registerForm.addEventListener('submit', handleRegisterForm);
+    </script>
+</body>
+
+</html>

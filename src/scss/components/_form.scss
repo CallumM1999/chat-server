@@ -1,0 +1,137 @@
+.form_ {
+    &h1 {
+        text-align: center;
+        font-size: 50px;
+        color: hsl(260, 50%, 89%);
+        letter-spacing: 2px;
+        font-weight: 100;
+        margin: 16px 0;
+    
+        color: #fff
+    }
+    &h2 {
+        text-align: center;
+        font-size: 35px;
+        color: hsl(260, 50%, 89%);
+        letter-spacing: 3px;
+        font-weight: 300;
+        margin: 12px 0 8px;
+    }
+}
+
+.formHeading {
+    background-color: hsl(260, 50%, 50%);
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.formGroup {
+    position: relative;
+    display: flex;
+}
+
+.input-container {
+    position: relative;
+    margin-top: 8px;
+    padding: 10px;
+}
+
+input {
+    &[type="text"],
+    &[type="password"] {
+        width: 100%;
+        height: 100%;
+        height: 50px;
+    
+        border: 1px solid hsl(260, 80%, 20%);
+        border-radius: 3px;
+        padding: 0 10px;
+        font-size: 20px;
+        color: #444;
+
+        ~ label.toggle {
+            transition: all .2s linear;
+            font-size: 16px;
+            top: 0;
+        }
+
+        &:focus {
+            box-shadow: none;
+            outline: none;
+            border-width: 2px;
+  
+        }
+    }
+}
+
+label {
+    transition: all .2s linear;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #444;
+}
+
+input:invalid {
+    box-shadow: none;
+}
+
+.valid {
+    > label {
+        color: hsl(120, 50%, 50%);
+    }
+    > input {
+        border-color: hsl(120, 50%, 50%);;
+    }
+}
+
+.invalid {
+    > label {
+        color: hsl(0,70%, 50%);
+    }
+    > input {
+        border-color: hsl(0,70%, 50%);
+    }
+}
+
+.formErrors {
+    background-color: hsl(260, 20%, 90%);
+    border-radius: 3px;
+    padding: 6px 10px 0;
+    color: hsl(260, 100%, 16%);
+    overflow: hidden;
+    margin: 0 20px 0;
+
+    > p {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    > ul {
+        padding: 0;
+        margin: 10px 0;
+
+        > li {
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+    
+            &::before {
+                font-family: FontAwesome;
+                content: '\f057';
+                font-weight: normal;
+                font-style: normal;
+                display: inline-block;
+                text-decoration: inherit;
+
+                color: hsl(0,50%, 50%);
+                margin: 4px;
+                font-size: 26px;
+                margin-right: 20px;
+            }
+        }
+    }
+}

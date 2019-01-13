@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'));
+app.use(require('./routes/pages'));
 app.use(require('./routes/routes'));
 
 const io = require('./socket').start(server);

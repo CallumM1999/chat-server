@@ -1,0 +1,47 @@
+@import "../../node_modules/normalize.scss/normalize.scss";
+
+@import './base/base';
+
+@import './components/form';
+@import './components/button';
+@import './components/bg_video';
+
+@import './typography/typography';
+
+
+section {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#registerForm {
+    width: 600px;
+    max-width: 100%;
+    background-color: hsl(260, 50%, 97%);
+    overflow: hidden;
+}
+
+hr {
+    margin-top:20px;
+    margin-bottom:20px;
+    border:0;
+    border-top:1px solid #34495e;
+    width:80%;
+    margin:5px auto;
+    border-color: hsl(260, 50%, 89%);
+    border-color: white
+}
+
+@media (min-width: 590px) {
+    section.register {
+        // align-items: center;
+    }
+    #registerForm {
+        margin-top: 32px;
+        border-radius: 4px;
+    }
+}

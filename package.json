@@ -9,13 +9,15 @@
         "body-parser": "^1.18.3",
         "cors": "^2.8.5",
         "eslint": "^5.12.0",
-        "eslint-plugin-react": "^7.12.3",
         "express": "^4.16.4",
         "jsonwebtoken": "^8.4.0",
         "mongodb": "^3.1.10",
         "mongoose": "^5.3.16",
+        "normalize.css": "^8.0.1",
+        "normalize.scss": "^0.1.0",
         "socket.io": "^2.2.0",
         "validator": "^10.10.0",
+        "vue": "^2.5.22",
         "websocket": "^1.0.28"
     },
     "engines": {
@@ -23,10 +25,18 @@
     },
     "scripts": {
         "start": "node server/server.js",
-        "start-watch": "nodemon server/server.js"
+        "start-watch": "nodemon server/server.js",
+        "build": "webpack"
     },
     "devDependencies": {
+        "css-loader": "^2.1.0",
         "eslint-plugin-prettier": "^3.0.1",
-        "prettier": "^1.15.3"
+        "mini-css-extract-plugin": "^0.5.0",
+        "node-sass": "^4.11.0",
+        "prettier": "^1.15.3",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "webpack": "^4.28.4",
+        "webpack-cli": "^3.2.1"
     }
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+    <video autoplay loop id='bgVideo'>
+        <source src="/assets/video/city.mp4" type="video/mp4">
+    </video>
+    <div class="videoOverlay"></div>
+
+    <section class="register">
+        <form id='registerForm' @submit="checkForm">
+            <div class="formHeading">
+                <h1 class="form_h1">Callum-Chat</h1>
+                <hr>
+                <hr>
+                <h2 class="form_h2">Register</h2>
+            </div>
+
+            <div class="input-container" v-bind:class="[errors.email ? 'invalid' : submitted ? 'valid' : '']">
+                <input type="text" id="input_email" name='email' v-model="email">
+                <label for="input_email" v-bind:class="{'toggle': email}">Email</label>
+            </div>
+
+            <div class="input-container" v-bind:class="[errors.email_conf ? 'invalid' : submitted ? 'valid' : '' ]">
+                <input type="text" id="input_email_conf" name='email_conf' v-model="email_conf">
+                <label for="input_email_conf" v-bind:class="{'toggle': email_conf}">Confirm Email</label>
+            </div>
+
+            <div class="formGroup">
+                <div class="input-container" v-bind:class="[errors.fname ? 'invalid' : submitted ? 'valid' : '']">
+                    <input type="text" id="input_fname" name='fname' v-model="fname">
+                    <label for="input_fname" v-bind:class="{'toggle': fname}">First Name</label>
+                </div>
+
+                <div class="input-container" v-bind:class="[errors.lname ? 'invalid' : submitted ? 'valid' : '']">
+                    <input type="text" id="input_lname" name='lname' v-model="lname">
+                    <label for="input_lname" v-bind:class="{'toggle': lname}">Surname</label>
+                </div>
+            </div>
+
+            <div class="input-container" v-bind:class="[errors.password ? 'invalid' : submitted ? 'valid' : '']">
+                <input type="password" id="input_password" name='password' v-model="password">
+                <label for="input_password" v-bind:class="{'toggle': password}">Password</label>
+            </div>
+
+            <div class="input-container" v-bind:class="[errors.password_conf ? 'invalid' : submitted ? 'valid' : '']">
+                <input type="password" id="input_password_conf" name='password_conf' v-model="password_conf">
+                <label for="input_password_conf" v-bind:class="{'toggle': password_conf}">Confirm Password</label>
+            </div>
+
+
+            <div class="input-container">
+                <div v-if="(Object.keys(errors).length || emailTaken)" class="formErrors">
+                    <p>Please correct the following error(s):</p>
+
+                    <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                        <li v-if="emailTaken">Email taken!</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="input-container">
+                <input type="submit" value="Register" class="submitBtn" v-bind:class="{ 'btn-loading': loading }">
+            </div>
+
+        </form>
+
+    </section>
+
+    <script src="js/bundle.js"></script>
+
+</body>
+
+</html>

@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const findUser = require('../mongo/methods/findUser');
 
-const validator = require('validator');
+const findUser = require('../mongo/methods/findUser');
+const registerUser = require('../mongo/methods/registerUser');
+
+const validateNewUser = require('../validation/validateNewUser');
 
 router.post('/login', (req, res) => {
 	console.log('login request');
@@ -21,26 +23,26 @@ router.post('/login', (req, res) => {
 		});
 });
 
-
-
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
 	console.log('register request');
 
-	const { email, password, fname, lname } = req.body;
+	setTimeout(() => {
+		const { email, password, fname, lname } = req.body;
+		if (!email || !password || !fname || !lname) return res.status(400).send();
 
-	if (!email || !password || !fname || !lname) return res.status(400).send();
+		// const validRequest = validateNewUser(email, password, fname, lname);
+		// if (!validRequest) return res.status(400).send();
 
+		registerUser(email, password, fname, lname)
+			.then(response => {
+				console.log('register user response', response);
 
-	if (!validator.isEmail(email)) return res.status(400).send();
-
-	if (validator.trim(password).length < 8 || validator.trim(password).length >= 100) return res.status(400).send();
-	if (!validator.isAscii(password)) return res.status(400).send();
-
-	if (validator.trim(fname).length > 30 || validator.trim(lname).length > 30) return res.status(400).send();
-
-	if (!validator.isAscii(fname) || !validator.isAscii(lname)) return res.status(400).send();
-
-	res.status(200).send();
+				if (!response.emailFree) return res.status(404).send();
+				if (response.success) return res.status(200).send();
+				res.status(401).send();
+			})
+			.catch(err => console.log('register user error', err));
+	}, 3000);
 });
 
 module.exports = router;

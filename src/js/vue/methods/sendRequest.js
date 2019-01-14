@@ -3,7 +3,7 @@ const sendRequest = function (email, password, fname, lname) {
 
     const sendData = { email, fname, lname, password };
 
-    fetch('https://nameless-reef-89192.herokuapp.com/register', {
+    fetch('/register', {
         method: 'post',
         headers: {
             'Accept': 'application/json',

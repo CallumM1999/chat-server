@@ -21,7 +21,7 @@ require('./handleSocket')(io);
 const mongoose = require('mongoose');
 const DB_URL = !!process.env.DB_URL ? process.env.DB_URL : 'mongodb://localhost/chat';
 
-console.log('DB_URL', DB_URL, process.env.DB_URL);
+// console.log('DB_URL', DB_URL, process.env.DB_URL);
 
 mongoose.connect(DB_URL, { useNewUrlParser: true });
 

@@ -19,7 +19,8 @@ io.use(require('./socketMiddleware/verifyToken'));
 require('./handleSocket')(io);
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/chat', { useNewUrlParser: true });
+const DB_URL = !!process.env.DB_URL ? process.env.DB_URL : 'mongodb://localhost/chat';
+mongoose.connect(DB_URL, { useNewUrlParser: true });
 
 const rooms = require('./rooms');
 rooms.add('sumtitle', 'group__anotherid');

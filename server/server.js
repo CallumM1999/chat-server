@@ -14,9 +14,9 @@ app.use(express.static('public'));
 app.use(require('./routes/pages'));
 app.use(require('./routes/routes'));
 
-const io = require('./socket').start(server);
-io.use(require('./socketMiddleware/verifyToken'));
-require('./handleSocket')(io);
+const io = require('./socket/socket').start(server);
+io.use(require('./socket/socketMiddleware/verifyToken'));
+require('./socket/handleSocket')(io);
 
 const mongoose = require('mongoose');
 const DB_URL = !!process.env.DB_URL ? process.env.DB_URL : 'mongodb://localhost/chat';

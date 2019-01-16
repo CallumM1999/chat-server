@@ -1,10 +1,10 @@
 const verifyMessage = require('./socketMiddleware/verifyMessage');
-const addMessage = require('./mongo/methods/addMessage');
-const userSearch = require('./mongo/methods/userSearch');
+const addMessage = require('../mongo/methods/addMessage');
+const userSearch = require('../mongo/methods/userSearch');
 
-const clients = require('./clients');
-const rooms = require('./rooms');
-const queue = require('./queue');
+const clients = require('../clients');
+const rooms = require('../rooms');
+const queue = require('../queue');
 const io = require('./socket').getIO();
 
 const handleSocket = io => {

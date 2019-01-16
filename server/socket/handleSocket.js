@@ -1,6 +1,7 @@
 const verifyMessage = require('./socketMiddleware/verifyMessage');
 const addMessage = require('../mongo/methods/addMessage');
 const userSearch = require('../mongo/methods/userSearch');
+const { escape } = require('validator');
 
 const clients = require('../clients');
 const rooms = require('../rooms');
@@ -13,14 +14,14 @@ const handleSocket = io => {
         socket.use(verifyMessage);
 
         socket.on('message', (message, fn) => {
-            handleMessage(message, socket.id);
+            const sanitizedMessage = { ...message, msg: escape(message.msg) }
+            handleMessage(sanitizedMessage, socket.id);
             if (fn) fn({ success: true });
         });
 
         socket.on('userSearch', async (queryString, _id, cb) => {
-            console.log('search query', queryString);
-
-            const userData = await userSearch(queryString, _id);
+            const sanitizedQuery = escape(queryString)
+            const userData = await userSearch(sanitizedQuery, _id);
             console.log('search done', userData);
             cb(userData);
         });

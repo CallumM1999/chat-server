@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwt_key = 'secret';
-const generateToken = data => jwt.sign(data, jwt_key, { expiresIn: '7d' });
+const { JWT_KEY } = require('../config.json');
+const generateToken = data => jwt.sign(data, JWT_KEY, { expiresIn: '7d' });
 
 module.exports = generateToken;

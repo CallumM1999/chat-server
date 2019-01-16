@@ -1,3 +1,5 @@
 node_modules/
 public/assets/css/
 public/js/
+
+config.json

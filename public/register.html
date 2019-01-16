@@ -7,6 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <script>
+        var modernBrowser = (
+            'fetch' in window &&
+            'assign' in Object
+        );
+
+        if (!modernBrowser) {
+            alert('browser is outdated, loading polyfill.bundle.js')
+            var scriptElement = document.createElement('script');
+
+            scriptElement.async = false;
+            scriptElement.src = 'js/polyfills.bundle.js';
+            document.head.appendChild(scriptElement);
+        }
+    </script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -80,7 +96,7 @@
 
     </section>
 
-    <script src="js/bundle.js"></script>
+    <script src="js/index.bundle.js"></script>
 
 </body>
 

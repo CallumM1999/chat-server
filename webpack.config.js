@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
@@ -47,24 +47,26 @@ module.exports = {
     },
 
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'assets/css/main.css',
-        }),
-        new webpack.ProvidePlugin({
-            Vue: 'vue'
-        }),
         new webpack.DefinePlugin({
             'process.env': {
                 // This has effect on the react lib size
                 'NODE_ENV': JSON.stringify('production'),
             }
         }),
+        new MiniCssExtractPlugin({
+            filename: 'assets/css/main.css',
+        }),
+        new webpack.ProvidePlugin({
+            Vue: 'vue'
+        }),
+
         new webpack.optimize.AggressiveMergingPlugin(),
         new CompressionPlugin({
+            // asset: "[path].gz[query]",
             algorithm: "gzip",
             test: /\.js$|\.css$|\.html$/,
             threshold: 10240,
-            minRatio: 0
+            minRatio: 0.8
         }),
     ]
 };

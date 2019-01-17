@@ -7,10 +7,8 @@ const add = (socketID, userID, data) => {
 
     socketIDs[socketID] = userID;
     console.log('added');
-    emitOnlineUsers();
     setTimeout(() => {
-        // wait till socket is initiated for client
-        getOnlineUsers(socketID);
+        emitOnlineUsers(socketID);
     }, 1000);
 };
 
@@ -22,8 +20,11 @@ const remove = (socketID) => {
     emitOnlineUsers();
 };
 
-const emitOnlineUsers = () => io.emit('ONLINE_USERS', Object.keys(users).map(item => users[item]));
-const getOnlineUsers = socketID => io.to(socketID).emit('ONLINE_USERS', Object.keys(users).map(item => ({ ...users[item], userID: socketIDs[users[item].socketID] })));
+const emitOnlineUsers = () => {
+    const Users = Object.keys(users).map(item => Object.assign(users[item], { userID: socketIDs[users[item].socketID] }));
+    io.emit('ONLINE_USERS', Users)
+};
+
 const findUser = (userID) => users.hasOwnProperty(userID) ? users[userID].socketID : false;
 
 module.exports = {

@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { JWT_KEY } = require('../../../config.json');
 
+const key = process.env.JWT_KEY || key;
+
 const verifyToken = (packet, next) => {
     const token = packet.handshake.query.token;
     if (!token) return next(new Error('no token'));

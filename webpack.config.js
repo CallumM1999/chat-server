@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         polyfills: './src/js/polyfills.js',
         index: './src/js/app.js',
@@ -30,6 +32,16 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
+                }
             }
         ]
     },
@@ -40,6 +52,31 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             Vue: 'vue'
-        })
-    ]
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                // This has effect on the react lib size
+                'NODE_ENV': JSON.stringify('production'),
+            }
+        }),
+        new webpack.optimize.AggressiveMergingPlugin(),
+        new CompressionPlugin({
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0
+        }),
+    ],
+
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    mangle: true,
+                    exclude: [/\.min\.js$/gi] // skip pre-minified libs
+                },
+            }),
+        ],
+    },
+
 };

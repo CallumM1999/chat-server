@@ -7,10 +7,17 @@ const app = express();
 const server = http.Server(app);
 const PORT = process.env.PORT || 3000;
 
+const serveGzipped = require('./middleware/serveGzipped');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.get('*.js', serveGzipped('text/javascript'))
+app.get('*.css', serveGzipped('text/css'))
+
 app.use(express.static('public'));
+
 app.use(require('./routes/pages'));
 app.use(require('./routes/routes'));
 

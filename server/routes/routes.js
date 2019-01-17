@@ -14,8 +14,7 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).send('missing email or password');
 
-    const normalizedEmail = validator.normalizeEmail(email.trim())ail
-}| `)
+    const normalizedEmail = validator.normalizeEmail(email.trim());
 
     findUser(normalizedEmail, password)
         .then(response => {

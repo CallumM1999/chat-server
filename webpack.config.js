@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
@@ -66,17 +66,5 @@ module.exports = {
             threshold: 10240,
             minRatio: 0
         }),
-    ],
-
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    mangle: true,
-                    exclude: [/\.min\.js$/gi] // skip pre-minified libs
-                },
-            }),
-        ],
-    },
-
+    ]
 };

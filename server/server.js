@@ -23,7 +23,4 @@ const DB_URL = !!process.env.DB_URL ? process.env.DB_URL : 'mongodb://localhost/
 
 mongoose.connect(DB_URL, { useNewUrlParser: true });
 
-const rooms = require('./rooms');
-rooms.add('sumtitle', 'group__anotherid');
-
 server.listen(PORT, () => console.log('server listening on port ', PORT));

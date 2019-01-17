@@ -14,7 +14,8 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).send('missing email or password');
 
-    const normalizedEmail = validator.normalizeEmail(email)
+    const normalizedEmail = validator.normalizeEmail(email.trim())ail
+}| `)
 
     findUser(normalizedEmail, password)
         .then(response => {
@@ -33,7 +34,7 @@ router.post('/register', async (req, res) => {
     const { email, password, fname, lname } = req.body;
     if (!email || !password || !fname || !lname) return res.status(400).send();
 
-    const normalizedEmail = validator.normalizeEmail(email);
+    const normalizedEmail = validator.normalizeEmail(email.trim());
     const normalizedFname = fname.trim().toLowerCase();
     const normalizedLname = lname.trim().toLowerCase();
 

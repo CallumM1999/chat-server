@@ -1,14 +1,12 @@
 const User = require('../models/user');
-const generateToken = require('../../generateToken');
+const generateToken = require('../../validation/generateToken');
 const bcrypt = require('bcrypt');
 
 const findUser = (email, password) => new Promise(async (resolve, reject) => {
     User.findOne({ email }, async (error, user) => {
         if (!user) return resolve({ found: false });
 
-
         const validPassword = await bcrypt.compare(password, user.password)
-        console.log('valid password', validPassword)
 
         if (!validPassword) return resolve({ found: true, password: false });
 

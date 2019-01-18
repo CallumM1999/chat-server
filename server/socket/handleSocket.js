@@ -59,12 +59,12 @@ const handleMessage = (msg, socketID) => {
     addMessage({ ...msg, sender: senderUserID })
         .then(({ _id }) => {
             if (!!recipient && recipient.socketID) {
-                io.to(recipient.socketID).emit('sendMessageToClients', {
+                io.to(recipient.socketID).emit('sendMessageToClients', [{
                     msg: msg.msg,
                     time: msg.time,
                     room: senderUserID,
                     sender: senderUserID
-                });
+                }]);
             } else {
                 console.log('add to inbox', _id);
                 queue

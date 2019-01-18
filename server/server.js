@@ -20,6 +20,7 @@ app.use(express.static('public'));
 
 app.use(require('./routes/pages'));
 app.use(require('./routes/routes'));
+app.use(require('./routes/messages'));
 
 const io = require('./socket/socket').start(server);
 io.use(require('./socket/socketMiddleware/verifyToken'));

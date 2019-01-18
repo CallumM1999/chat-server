@@ -3,6 +3,8 @@ const addMessage = require('../mongo/methods/addMessage');
 const userSearch = require('../mongo/methods/userSearch');
 const escape = require('validator/lib/escape');
 
+const getUserData = require('../mongo/methods/getUserData');
+
 const clients = require('../clients');
 const queue = require('../queue');
 const io = require('./socket').getIO();
@@ -24,7 +26,12 @@ const handleSocket = io => {
             cb(userData);
         });
 
-        socket.on('getRoomData', (room, cb) => cb({ ...clients.users[room], roomType: 'user' }));
+        socket.on('getRoomData', async (room, cb) => {
+            const data = clients.users[room]
+            if (data) return cb(data);
+            const userData = await getUserData(room);
+            cb(userData)
+        });
 
         socket.on('disconnect', reason => {
             console.log('client disconnect', socket.id, reason);
@@ -33,20 +40,16 @@ const handleSocket = io => {
     });
 };
 
-const userConnect = (socketID, { _id, fname, lname }) => {
+const userConnect = async (socketID, { _id, fname, lname }) => {
     console.log('user connected');
     clients.add(socketID, _id, { fname, lname });
 
-    queue
-        .get(_id)
-        .then(queue => {
-            const messages = queue.map(({ message, sender, time }) => ({ msg: message, room: sender, sender, time }));
-            if (messages.length > 0) {
-                console.log('missed messages', messages)
-                io.to(socketID).emit('clientMissedMessages', messages)
-            }
-        })
-        .catch(err => console.log('get queue err', err));
+    const messages = await queue.get(_id);
+
+    if (messages.length) {
+        const formattedMessages = messages.map(({ message, sender, time }) => ({ msg: message, room: sender, sender, time }));
+        io.to(socketID).emit('sendMessageToClients', formattedMessages)
+    }
 };
 
 const handleMessage = (msg, socketID) => {

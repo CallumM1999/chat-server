@@ -5,8 +5,12 @@ const bcrypt = require('bcrypt')
 
 const findUser = require('../mongo/methods/findUser');
 const registerUser = require('../mongo/methods/registerUser');
+const deleteAccount = require('../mongo/methods/deleteAccount')
 
 const validateNewUser = require('../validation/validateNewUser');
+
+const verifyToken = require('../middleware/verifyToken')
+
 
 router.post('/login', (req, res) => {
     console.log('login request');
@@ -50,5 +54,13 @@ router.post('/register', async (req, res) => {
         })
         .catch(err => console.log('register user error', err));
 });
+
+router.post('/delete', verifyToken, async (req, res) => {
+    const { decoded } = req.body;
+    const deleted = await deleteAccount(decoded._id);
+
+    if (deleted) res.status(200).send();
+    else res.status(404).send();
+})
 
 module.exports = router;

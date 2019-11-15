@@ -1,12 +1,12 @@
 # Chat Server
-Backend for [React Native Chat App](https://github.com/CallumM1999/react-native-chat-app)
+Backend for [React Native Chat App](https://github.com/thecallum/react-native-chat-app)
 
 ## Table of Contents
 * [About](#About)
 * [Installation](#About)
 
 ### About
-Chat server is the backend for [React Native Chat App](https://github.com/CallumM1999/react-native-chat-app).
+Chat server is the backend for [React Native Chat App](https://github.com/thecallum/react-native-chat-app).
 
 I have hosted the service on Heroku using Express Web Framework.
 
